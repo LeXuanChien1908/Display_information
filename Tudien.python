@@ -1,0 +1,51 @@
+keys, value = input('Enter input: \n').split()
+d = {keys: int(value)} 
+
+# original dictionary
+d = {'cars': 1, 'motorcycles': 2, 'houses': 2, 'RVs': 1}
+# added the next 4 entries here
+d['dogs'] = 3 
+d['cats'] = 1
+d['boats'] = 3 
+d['trailers'] = 2
+print(f"{d}\n")
+
+# update 2 entries
+if 'dogs' in d.keys():
+    d['dogs'] = 5
+
+if 'cats' in d.keys():
+    d['cats'] = 3
+   
+# add 2 more entries
+if 'campers' not in d.keys():
+    d['campers'] = 2
+
+if 'lakefront' not in d.keys():
+    d['lakefront'] = 1
+
+# added a new catagory via input 
+if keys not in d.keys():
+    d[keys] = int(value)
+print(d)
+
+# getting all dictionary titles
+print()
+y = d.keys()
+
+# input dictionary catagory wanted as to find
+z = input()
+x = d.get(z)
+print(f"{y}\n\nThis is the catagory I was searching for {x} {z}")
+
+# last entry
+print(f"\n{keys}: {value} last entry\n")
+
+for key in d:
+   print(key, d.get(key))
+   if (key == 'dogs'):
+      for i in range(d.get(key)):
+         print("\t\t\t\tWoof\n")
+   if (key == 'cats'):
+      for i in range(d.get(key)):
+         print("\t\t\t\tMeow\n")
