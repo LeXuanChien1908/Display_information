@@ -1,6 +1,12 @@
 from tkinter import *
 import random
 
+delay = 0.1
+
+# ghi diem
+score = 0
+high_score = 0
+
 
 boardWidth = 30
 boardHeight = 30
@@ -16,7 +22,7 @@ class Snake():
         self.key = "w"
         self.points = 0
 
-    def move(self): # move and change direction with wasd
+    def move(self): # Di chuyển và thay đổi hướng với các phím W,A,S,D
 
         for i in range(self.snakeLength - 1, 0, -1):
                 self.snakeX[i] = self.snakeX[i-1]
@@ -42,7 +48,7 @@ class Snake():
 
             self.snakeLength = self.snakeLength + 1
 
-            x = self.snakeX[len(self.snakeX)-1] # Snake grows
+            x = self.snakeX[len(self.snakeX)-1] # Snake mọc thêm đuôi ( rắn dài ra )
             y = self.snakeY[len(self.snakeY) - 1]
             self.snakeX.append(x+1)
             self.snakeY.append(y)
@@ -55,10 +61,10 @@ class Snake():
         for i in range(1, self.snakeLength, 1):
 
             if self.snakeY[0] == self.snakeY[i] and self.snakeX[0] == self.snakeX[i]:
-                return True # Snake eat itself
+                return True # Snake ăn thịt mình 
 
         if self.snakeX[0] < 1 or self.snakeX[0] >= boardWidth-1 or self.snakeY[0] < 1 or self.snakeY[0] >= boardHeight-1:
-            return True # Snake out of Bounds
+            return True # Snake chạy ra khỏi giới hạn
 
         return False
 
@@ -78,6 +84,7 @@ class Snake():
 
     def getPoints(self):
         return self.points
+        
 
 
 class Apple:
@@ -121,11 +128,18 @@ class GameLoop:
                                     apple.getAppleX() * tilesize + tilesize,
                                     apple.getAppleY() * tilesize + tilesize, fill="green")  # Apple
 
-        else:   # GameOver Message
+        else:   # Thông báo trò chơi kết thúc
             canvas.delete(ALL)
             canvas.create_text(150, 100, fill="darkblue", font="Times 20 italic bold", text="GameOver!")
             canvas.create_text(150, 150, fill="darkblue", font="Times 20 italic bold",
                                    text="Points:" + str(snake.getPoints()))
+            canvas.create_text(150, 200, fill="darkblue", font="Times 20 italic bold",
+                                   text="HighScore:" + str(snake.getPoints()))
+            
+            
+            
+                                   
+            
 
 
 snake = Snake()
